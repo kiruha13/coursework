@@ -23,13 +23,6 @@
 
     <button type="submit" class="btn btn-lg btn-success" style="border-radius:50%;"><span class="glyphicon glyphicon-send"></span></button>
 </form>
-    
-   
-    
-    
-
-    
-
 </center>
 <style>
     .chatmsg
