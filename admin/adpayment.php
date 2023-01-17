@@ -53,17 +53,7 @@ td
 <?php
 
 $i=0;
-if($_SERVER['REQUEST_METHOD']=="GET"){
-$localhost = "localhost";
-$usernamew = "root";
-$passwordw = "mypass";
-$db = "expdb";
-$conn = mysqli_connect($localhost,$usernamew,$passwordw,$db);
-if(!$conn){
-echo "Connection error";
-}
-else{
-echo "";
+include "mydb.php";
 
 $sql = "Select * from paymenttable order by time desc";
 $result = mysqli_query($conn,$sql);
@@ -75,23 +65,18 @@ echo "</tr>";
 echo "</table><hr>";
 echo "<table class='cont table table-hover table-dark'>";
 if (mysqli_num_rows($result) > 0) {
-while($row = mysqli_fetch_assoc($result)){
+  while($row = mysqli_fetch_assoc($result)){
     $i++;
-echo "<tr >";
-
-echo  "<td >".$i."</td>"."<td>".$row["fname"]."</td><td>".$row["password"]."</td><td>".$row["cred"]."</td><td>".$row["coursename"]."</td><td>".$row['time']."</td>";
-
-echo "</tr>";
-
-
-}
-echo "</table>";
-echo "<span class='badge'>$i</span>";
+    echo "<tr >";
+    echo  "<td >".$i."</td>"."<td>".$row["fname"]."</td><td>".$row["password"]."</td><td>".$row["cred"]."</td><td>".$row["coursename"]."</td><td>".$row['time']."</td>";
+    echo "</tr>";
+  }
+  echo "</table>";
+  echo "<span class='badge'>$i</span>";
 }
 else{
-
 echo "0 results";
 }
-}
-}
+
+
 ?>
