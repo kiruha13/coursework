@@ -26,17 +26,17 @@
 
 *chattable*
 username,message,time
-*contacttable*
+<br> *contacttable*
 fullname,email,subject,message,time
-*counter*
+<br> *counter*
 visit id
-*exptable*
+<br> *exptable*
 fname,password,email
-*paymenttable*
+<br> *paymenttable*
 fname,password,cred,coursename,time
-*raitingtable*
+<br> *raitingtable*
 fname,ui,perfomance,design,usability
-*reviewtable*
+<br> *reviewtable*
 username,comment,time
 ## 6. HTTP запросы/ответы
 ### Начальная страница
