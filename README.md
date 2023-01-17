@@ -126,72 +126,21 @@
 <br>X-Powered-By: PHP/8.1.10
 
 ## 7. Значимые фрагменты кода
-### Функции проверки регистрации и входа
+### реализация чата в панели администратора 
 ``` js
-function checkLogin() {
-        //Считываем сообщение из поля ввода
-        var login = $("#login").val();
-        // Отсылаем параметры
-        $.ajax({
-            type: "POST",
-            url: "register.php",
-            data: "login=" + login,
-            success: function (html) {
-                $("#check_login").html(html);
-                $("#login").val('');
+function displaychat() 
+    {
+    
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                document.getElementById("chats").innerHTML = this.responseText;
             }
-        });
+        }
+        xmlhttp.open("GET", "chatdisplay.php", true);
+        xmlhttp.send();
     }
-    function checkEnter() {
-        //Считываем сообщение из поля ввода
-        var logent = $("#logent").val();
-        // Отсылаем параметры
-        $.ajax({
-            type: "POST",
-            url: "login.php",
-            data: "login=" + logent,
-            success: function (html) {
-                $("#check_enter").html(html);
-                $("#logent").val('');
-                setTimeout(function(){
-                    window.location.href="index.php";
-                },1000);
-            }
-        });
-    }
-
-```
-### Функции загрузки чатов
-```js
-  function loadchats(){
-        $.ajax({
-            url: "load_chat.php",
-            type: "POST",
-            cache: false,
-            data: {"user": user},
-            dataType: "html",
-            success: function (data) {
-                if (chats_data != data) {
-                    chats_data = data;
-                    $("#chats").empty();
-                    $("#chats").append(data);
-                    $.ajax({
-                        url: "chat_check.php",
-                        type: "POST",
-                        cache: false,
-                        data: {"chat": opened_chat, "user": user},
-                        dataType: "html",
-                        success: function(exist){
-                            if (exist == '1') {
-                                $("#" + opened_chat).attr("disabled", true);
-                            }
-                            else{
-                                opened_chat = null;
-                            }
-                        }
-                    });
-                }
-            }
-        });
-    }
+   setInterval(displaychat,10);
 ```
